@@ -8,7 +8,7 @@ public class CampDeBatalla {
 	public static void main(String[] args) throws AWTException  {
 		// TODO Auto-generated method stub
 		
-		System.out.println("prova monti");
+		System.out.println("prova branca jepi");
 		
 		boolean guanyar= false;
 		Taulell table = new Taulell();

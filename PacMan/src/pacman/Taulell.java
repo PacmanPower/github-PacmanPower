@@ -57,6 +57,7 @@ public class Taulell {
 	}
 
 	public static boolean contar_punts() {
+		/* AQUEST METODE ÉS DE LA CLASSE JUGADOR */
 		int cont_boletes = 0;
 		int cont = 0;
 		for (int i = 0; i < 17; i++) {
@@ -89,6 +90,7 @@ public class Taulell {
 	}
 
 	public void moviment_fantasma() {
+		/* AQUEST METODE ÉS DE LA CLASSE FANTASMA */
 		
 		
 	 boolean bolea = false;
@@ -101,7 +103,10 @@ public class Taulell {
 					if (table[xBixo][yBixo + 1] != Casella.mur && bolea2==false ) {
 
 						table[xBixo][yBixo + 1] = Fantasma.Bixo;
-						table[xBixo][yBixo] = Casella.punt;
+						table[xBixo][yBixo] = Casella.punt; 
+						/* s'ha de recollir el 
+						char de la casella que tenia i tornar-lo a col·locar un cop el fantasma passa
+						(table[xBixo][yBixo] = casellaAnt)*/
 						yBixo = yBixo + 1;
 						bolea=true;
 					} else bolea=false; bolea2=false;
@@ -188,12 +193,18 @@ public class Taulell {
 	}
 
 	public void posicionar_fitxa() {
+		/* AQUEST METODE ÉS DE LA CLASSE JUGADOR  no s'han de crear objectes dins de classes
+		 * s'ha de passar el mètode dins la classe jugador i passar l'objecte taulell per paràmetre
+		 */
 		Jugador jugador = new Jugador();
 		table[x][y] = jugador.getComecocos();
 
 	}
 
 	public void moviment_jugador() throws AWTException {
+		/* AQUEST METODE ÉS DE LA CLASSE JUGADOR 
+		 * S'ha de passar l'objecte taulell per paràmetre
+		 * */
 		String direccio = "";
 		Robot robot = new Robot();
 		System.out

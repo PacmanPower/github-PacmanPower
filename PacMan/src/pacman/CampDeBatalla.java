@@ -9,6 +9,7 @@ public class CampDeBatalla {
 		// TODO Auto-generated method stub
 		
 		System.out.println("prova branca jepi");
+		System.out.println("Segona prova desde branca jepi");
 		
 		boolean guanyar= false;
 		Taulell table = new Taulell();

@@ -9,10 +9,15 @@ import java.util.Scanner;
 import javax.swing.text.html.parser.Entity;
 
 import javazoom.jlgui.basicplayer.BasicPlayer;
-
+/**
+ * CLASSE TAULELL
+ * @author Xaviertn
+ *@version 1
+ */
 public class Taulell {
 
-	private static char table[][] = new char[17][19];
+	//ATRIBUTS DE LA CLASSE
+   static char table[][] = new char[17][19];
 	private boolean bolea2=false;
 	private boolean bolea3=false;
 	private int cas=0;
@@ -21,7 +26,11 @@ public class Taulell {
 
 	private int yBixo = 1;
 	private int xBixo = 1;
-
+	
+	
+	/**
+	 * 	CONSTRUCTOR PER DEFECTE
+	 */
 	public Taulell() {
 		table = new char[][] { "###################".toCharArray(),
 				"#........#........#".toCharArray(),
@@ -44,7 +53,81 @@ public class Taulell {
 		};
 
 	}
+	
+	//GTTERS I SETTERS///////////////////////////////////////////////////
+	public static char[][] getTable() {
+		return table;
+	}
 
+
+	public static void setTable(char[][] table) {
+		Taulell.table = table;
+	}
+
+	public boolean isBolea2() {
+		return bolea2;
+	}
+
+
+	public void setBolea2(boolean bolea2) {
+		this.bolea2 = bolea2;
+	}
+
+	public boolean isBolea3() {
+		return bolea3;
+	}
+
+	public void setBolea3(boolean bolea3) {
+		this.bolea3 = bolea3;
+	}
+	
+	public int getCas() {
+		return cas;
+	}
+
+	public void setCas(int cas) {
+		this.cas = cas;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getyBixo() {
+		return yBixo;
+	}
+
+	public void setyBixo(int yBixo) {
+		this.yBixo = yBixo;
+	}
+
+	public int getxBixo() {
+		return xBixo;
+	}
+
+
+	public void setxBixo(int xBixo) {
+		this.xBixo = xBixo;
+	}
+
+	
+	
+
+	/**
+	 * MÈTODE PER A MOSTRAR EL TAULELL
+	 */
 	public void mostrar_taulell() {
 
 		for (int i = 0; i < 17; i++) {
@@ -55,9 +138,11 @@ public class Taulell {
 		}
 		System.out.println("");
 	}
-
+	/**
+	 * MÈTODE PER A CONTAR PUNTUACIÓ JUGADOR
+	 * @return boleà
+	 */
 	public static boolean contar_punts() {
-		/* AQUEST METODE ÉS DE LA CLASSE JUGADOR */
 		int cont_boletes = 0;
 		int cont = 0;
 		for (int i = 0; i < 17; i++) {
@@ -83,199 +168,19 @@ public class Taulell {
 
 	}
 
-	public void iniciar_Fantasma() {
-
-		this.table[xBixo][yBixo] = Fantasma.Bixo;
-
-	}
-
-	public void moviment_fantasma() {
-		/* AQUEST METODE ÉS DE LA CLASSE FANTASMA */
-		
-		
-	 boolean bolea = false;
-	
-		for(int i=1; i<=4; i++){
-			if (bolea==false){
-				switch (i) {
-				case 1:
-					//DRETA/////////
-					if (table[xBixo][yBixo + 1] != Casella.mur && bolea2==false ) {
-
-						table[xBixo][yBixo + 1] = Fantasma.Bixo;
-						table[xBixo][yBixo] = Casella.punt; 
-						/* s'ha de recollir el 
-						char de la casella que tenia i tornar-lo a col·locar un cop el fantasma passa
-						(table[xBixo][yBixo] = casellaAnt)*/
-						yBixo = yBixo + 1;
-						bolea=true;
-					} else bolea=false; bolea2=false;
-					
-					break;
-					//AVALL/////////
-				case 2:
-					if (table[xBixo+1][yBixo] != Casella.mur && bolea3==false) {
-
-						table[xBixo+1][yBixo] = Fantasma.Bixo;
-						table[xBixo][yBixo] = Casella.punt;
-						xBixo = xBixo + 1;
-						bolea=true;
-					} else bolea=false;
-					break;
-					//ESQUERRA/////////
-				case 3:
-					if (table[xBixo][yBixo-1] != Casella.mur ) {
-
-						table[xBixo][yBixo-1] = Fantasma.Bixo;
-						table[xBixo][yBixo] = Casella.punt;
-						yBixo = yBixo - 1;
-						bolea=true;
-						bolea2=true;
-					} else bolea2=false;
-					break;
-					
-					//AMUNT/////////
-				case 4:
-					if (table[xBixo-1][yBixo] != Casella.mur ) {
-
-						table[xBixo-1][yBixo] = Fantasma.Bixo;
-						table[xBixo][yBixo] = Casella.punt;
-						xBixo = xBixo - 1;
-						bolea=true;
-						bolea2=false;
-						bolea3=true;
-					}else bolea3=false;
-					break;
-				default:
-					break;
-				}
-			}
-			
-			
-		}
-		/*if (table[xBixo][yBixo + 1] != Casella.mur ) {
-
-			table[xBixo][yBixo + 1] = Fantasma.Bixo;
-			table[xBixo][yBixo] = Casella.punt;
-			yBixo = yBixo + 1;
-			
-			
-		} 
-		
-		//AVALL///////////////////////
-		if (table[xBixo + 1][yBixo] != Casella.mur) {
-
-			table[xBixo + 1][yBixo] = Fantasma.Bixo;
-			table[xBixo][yBixo] = Casella.punt;
-			xBixo = xBixo + 1;
-			
-		} 
-		//ESQUERRA///////////////////////
-		if (table[xBixo][yBixo - 1] != Casella.mur ) {
-
-			table[xBixo][yBixo - 1] = Fantasma.Bixo;
-			table[xBixo][yBixo] = Casella.punt;
-			yBixo = yBixo - 1;
-			;
-		} */
-		
-		
-		
-		//AMUNT///////////////////////
-		/*if (table[xBixo - 1][yBixo] != Casella.mur && bolea==false) {
-
-			table[xBixo - 1][yBixo] = Fantasma.Bixo;
-			table[xBixo][yBixo] = Casella.punt;
-			xBixo = xBixo - 1;
-
-		}*/
-
-	}
-
-	public void posicionar_fitxa() {
-		/* AQUEST METODE ÉS DE LA CLASSE JUGADOR  no s'han de crear objectes dins de classes
-		 * s'ha de passar el mètode dins la classe jugador i passar l'objecte taulell per paràmetre
-		 */
-		Jugador jugador = new Jugador();
-		table[x][y] = jugador.getComecocos();
-
-	}
-
-	public void moviment_jugador() throws AWTException {
-		/* AQUEST METODE ÉS DE LA CLASSE JUGADOR 
-		 * S'ha de passar l'objecte taulell per paràmetre
-		 * */
-		String direccio = "";
-		Robot robot = new Robot();
-		System.out
-				.println("posa direccio (W)AMUNT  (S)AVALL (A)ESQUERRA (D) DRETA \n"
-						+ "Cada rodoneta que mengis sumaràs 2 punts, guanyes un cop agafades totes");
-
-		direccio = llegir_string().toUpperCase();
-
-		switch (direccio) {
-		// MOVIMENT ENDAVANT
-		case "W":
-			if (table[x - 1][y] != Casella.mur) {
-				if (table[x - 1][y] == Casella.punt) {
-
-				}
-				table[x][y] = ' ';
-				this.x = x - 1;
-				this.y = y;
-				table[x][y] = 'C';
-			} else {
-				System.out.println("Casella muro!!");
-			}
-			break;
-		// MOVIMENT AVALL
-		case "S":
-			if (table[x + 1][y] != Casella.mur) {
-				table[x][y] = ' ';
-				this.x = x + 1;
-				this.y = y;
-
-				table[x][y] = 'C';
-			} else {
-				System.out.println("Casella muro!!");
-			}
-			break;
-		// MOVIMENT ESQUERRA
-		case "A":
-			if (table[x][y - 1] != Casella.mur) {
-				table[x][y] = ' ';
-				this.x = x;
-				this.y = y - 1;
-				table[x][y] = 'C';
-			} else {
-				System.out.println("Casella muro!!");
-			}
-			break;
-		// MOVIMENT DRETA
-		case "D":
-			if (table[x][y + 1] != Casella.mur) {
-				table[x][y] = ' ';
-				this.x = x;
-				this.y = y + 1;
-				table[x][y] = 'C';
-			} else {
-				System.out.println("Casella muro!!");
-			}
-			break;
-
-		default:
-			break;
-
-		}
-
-		System.out.println("la x es " + x);
-	}
-
+	/**
+	 * MÈTODE PER A LLEGIR DE TECLAT UN INT
+	 * @return l'escanner
+	 */
 	private static int llegir() {
 		Scanner llegir = new Scanner(System.in);
 		return llegir.nextInt();
 	}
 
+	/**
+	 * MÈTODE PER A LLEGIR DE TECLAT UN STRING
+	 * @return l'escanner
+	 */
 	private static String llegir_string() {
 		Scanner llegir = new Scanner(System.in);
 		return llegir.next();
